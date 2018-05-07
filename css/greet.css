@@ -37,12 +37,13 @@ body {
 
 .writer {
   font-style: italic;
+     width: 80%;
 }
 
 .Quote {
   font-family: 'Cardo', serif;
   font-size: 1.5em;
-  width: 600px;
+  width: 80%;
   height: auto;
   margin: 0 auto;
   background-color: #efefef;
