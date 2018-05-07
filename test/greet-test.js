@@ -1,10 +1,15 @@
-describe("The greet function", function(){
+describe('The Greet function', function() {
+  it('It should Greet with the proper language',
+    function() {
+      var greet = greeting();
+      greet.isixhosa('Siba');
+       greet.english('Siba');
+       greet.afrikaans('Siba');
+       
+      assert.equal(greet.isixhosa(), "Molo, Siba");
+      assert.equal(greet.english(), "Hello, Siba");
+      assert.equal(greet.afrikaans(),"Hallo, Siba");
 
-  it("It should greet with the Inputed Name", function(){
-   
-      assert.equal(greet("Siba"), "Molo, Siba");
-      assert.equal(greet("Siba"), "Hello, Siba");
-      assert.equal(greet("Siba"), "Hallo, Siba");  
+    });
+
   });
-	
-});
