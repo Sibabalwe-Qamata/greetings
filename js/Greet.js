@@ -39,13 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
         var countPeople = greetings.people();
-        displayCounter.innerHTML = countPeople;
+         localStorage.setItem("Counter", countPeople);
+        displayCounter.innerHTML = localStorage.getItem("Counter");
 
     }
-
-
-
-
 
     greetBtn.addEventListener('click', greetPerson);
 });
