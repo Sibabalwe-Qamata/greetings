@@ -45,12 +45,12 @@
       </div>
 
       <div class="four columns">
-           <input type="text" name="" onfocus="this.value=''" value="" placeholder="enter 'Siba' or 'DG'" class="text-name">
+           <input type="text" name="" onfocus="this.value=''" value="" placeholder="enter name here" class="text-name">
             
       </div>
 
       <div class="four columns counter">
-           <p>Display counter here</p> 
+           <span><span class="counter">0</span> </span>
       </div>
 
     </div>
@@ -59,7 +59,7 @@
     <div class="row">
        <div class="four columns">
            <label class="">
-                <input type="radio" name="EnglishGreet" class="EnglishTypeRadio" value="English">
+                <input type="radio" name="language" class="EnglishTypeRadio" value="English">
                 <span class="label-body">English</span>
             </label>
       </div>
@@ -67,14 +67,14 @@
 
       <div class="four columns">
            <label class="">
-                <input type="radio" name="IsixhosaGreet" class="IsixhosaTypeRadio" value="Isixhosa">
+                <input type="radio" name="language" class="IsixhosaTypeRadio" value="Isixhosa">
                 <span class="label-body">Isixhosa</span>
             </label>
       </div>
 
       <div class="four columns">
            <label class="">
-                <input type="radio" name="AfrikaansGreet" class="AfrikaansTypeRadio" value="Afrikaans">
+                <input type="radio" name="language" class="AfrikaansTypeRadio" value="Afrikaans">
                 <span class="label-body">Afrikaans</span>
             </label>
       </div>
@@ -84,9 +84,13 @@
 
 
     <div class="row">
-       <div class="twelve columns">
-           <button class=button>Greet </button>
+        <div class="six columns">
+           <button class="button reset">Reset </button>
       </div>
+       <div class="six columns">
+           <button class="button greet">Greet </button>
+      </div>
+        
     </div>
 
     <div class="row">

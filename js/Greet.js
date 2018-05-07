@@ -1,20 +1,51 @@
-document.addEventListener('DOMContentLoaded', function() 
-{
+document.addEventListener('DOMContentLoaded', function () {
 
-//get a reference to the billString
-var billStringField = document.querySelector(".billString");
+    //get a reference to the billString
+    var greetingText = document.querySelector(".text-name");
 
-//get a reference to the calculate button
-var calculateBtn = document.querySelector(".calculateBtn");
+    var displayCounter = document.querySelector(".counter");
 
-//get a reference to the billTotal element
-var billTotalElement = document.querySelector(".billTotal");
+    //get a reference to the buttons
+    var greetBtn = document.querySelector(".greet");
 
-var total = document.querySelector(".total");
+    var resetBtn = document.querySelector(".reset");
 
-	
-	
+    var DisplayGreet = document.querySelector(".writer");
 
-    
-calculateBtn.addEventListener('click', displayBill);
+    var greetings = greeting();
+
+    function greetPerson() {
+        var checkedRadioBtn = document.querySelector("input[name='language']:checked");
+
+        var languageType = checkedRadioBtn.value;
+        console.log(languageType);
+
+        var nameOfPerson = greetingText.value;
+        console.log(nameOfPerson);
+
+        if (languageType === "English") {
+            var englishGreeting = greetings.english(nameOfPerson);
+            DisplayGreet.innerHTML = englishGreeting;
+
+        } else if (languageType === "Isixhosa") {
+            var xhosaGreetings = greetings.isixhosa(nameOfPerson);
+            DisplayGreet.innerHTML = xhosaGreetings;
+
+
+        } else if (languageType === "Afrikaans") {
+            var afrikaansGreetings = greetings.afrikaans(nameOfPerson);
+
+            DisplayGreet.innerHTML = afrikaansGreetings;
+
+        }
+        var countPeople = greetings.people();
+        displayCounter.innerHTML = countPeople;
+
+    }
+
+
+
+
+
+    greetBtn.addEventListener('click', greetPerson);
 });
