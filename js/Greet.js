@@ -12,37 +12,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var DisplayGreet = document.querySelector(".writer");
 
+    var namesGreeted = {};
+
     var greetings = greeting();
 
     function greetPerson() {
         var checkedRadioBtn = document.querySelector("input[name='language']:checked");
 
         var languageType = checkedRadioBtn.value;
-        console.log(languageType);
+
 
         var nameOfPerson = greetingText.value;
-        console.log(nameOfPerson);
+
 
         if (languageType === "English") {
+            var countPeople = greetings.people();
+            if (namesGreeted[nameOfPerson] === undefined) {
+
+                //add an entry for the user that was greeted in the Object Map
+                namesGreeted[nameOfPerson] = 0;
+                //update the DOM to display the counter
+                displayCounter.innerHTML = countPeople;
+            }
             var englishGreeting = greetings.english(nameOfPerson);
+            localStorage.setItem("Name", nameOfPerson);
             DisplayGreet.innerHTML = englishGreeting;
 
         } else if (languageType === "Isixhosa") {
             var xhosaGreetings = greetings.isixhosa(nameOfPerson);
+            localStorage.setItem("Name", nameOfPerson);
             DisplayGreet.innerHTML = xhosaGreetings;
 
 
         } else if (languageType === "Afrikaans") {
+            localStorage.setItem("Name", nameOfPerson);
             var afrikaansGreetings = greetings.afrikaans(nameOfPerson);
 
             DisplayGreet.innerHTML = afrikaansGreetings;
 
         }
         var countPeople = greetings.people();
-         localStorage.setItem("Counter", countPeople);
-        displayCounter.innerHTML = localStorage.getItem("Counter");
+        // localStorage.setItem("Counter", countPeople);
+        //var keep = localStorage.getItem("Counter")
+        displayCounter.innerHTML = countPeople;
 
     }
+
+    resetBtn.addEventListener('click', function () {
+        displayCounter.innerHTML = 0;
+    });
 
     greetBtn.addEventListener('click', greetPerson);
 });
