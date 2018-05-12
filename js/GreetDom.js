@@ -33,7 +33,7 @@ function greeting(UserDatabase)
     {
         if(language === "Isixhosa"){return "Molo, "+Name_to_greet;}
         else if(language === "Afrikaans"){return "Hallo, "+Name_to_greet;}
-        else if(language ==="English"){return "Molo, "+Name_to_greet;}
+        else if(language ==="English"){return "Hello, "+Name_to_greet;}
     }
 
     //Below are Getter functions
@@ -81,7 +81,7 @@ function greeting(UserDatabase)
     //var processGreetings = greeting();
 
     //Below to get the stored users from local storage
-    var storedUserList = localStorage.getItem('Names') ? JSON.parse(localStorage.getItem('Names')): {};
+    var storedUserList = localStorage.getItem('Name') ? JSON.parse(localStorage.getItem('Name')) : {};
     var namesToStore =  greeting(storedUserList);
 
     //To display the number of greeted people...
@@ -130,7 +130,7 @@ function greeting(UserDatabase)
 
     resetBtn.addEventListener('click', function () 
     {
-        namesToStore.reset();
+        namesToStore.updateNameList();
         window.location.reload();
         localStorage.clear();
         
