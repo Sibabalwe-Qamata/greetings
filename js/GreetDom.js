@@ -1,5 +1,71 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    //Below is the Factory Function
+
+
+function greeting(UserDatabase) 
+{
+
+    var Name_to_greet = '';
+    var language= '';
+    var namesGreeted = {};
+
+    
+    function setName(greetName){
+        if(greetName !== " "){Name_to_greet = greetName;}
+    }
+
+    function setLanguage(lang){language= lang;}
+
+    function checkUserStoredList(){
+        if(UserDatabase){ namesGreeted = UserDatabase;}
+
+        if(Name_to_greet !==""){
+            if(namesGreeted[Name_to_greet] === undefined)
+            {
+                namesGreeted[Name_to_greet]=0;
+            }
+        }
+
+    }
+
+    function greetUser()
+    {
+        if(language === "Isixhosa"){return "Molo, "+Name_to_greet;}
+        else if(language === "Afrikaans"){return "Hallo, "+Name_to_greet;}
+        else if(language ==="English"){return "Molo, "+Name_to_greet;}
+    }
+
+    //Below are Getter functions
+
+    function getNameToGreet(){return Name_to_greet;}
+
+    function getLanguageChoice(){return language;}
+
+    function getNameMap(){return namesGreeted;}
+
+    function updateNameMap(){return namesGreeted ={};}
+
+    function getCounter(){return Object.keys(namesGreeted).length;}
+
+    return {
+        set_Name: setName,
+        set_language: setLanguage,
+        checkList: checkUserStoredList,
+
+        get_name : getNameToGreet,
+        get_language : getLanguageChoice,
+        get_NameList : getNameMap,
+
+        doGreet : greetUser,
+        counter : getCounter,
+        updateNameList : updateNameMap
+    }
+
+}
+
+//----------------------------------------End Here------------------------------------------------//
+
     //get a reference to the billString
     var greetingText = document.querySelector(".text-name");
 
@@ -12,11 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var DisplayGreet = document.querySelector(".writer");
 
-    var processGreetings = greeting();
+    //var processGreetings = greeting();
 
     //Below to get the stored users from local storage
     var storedUserList = localStorage.getItem('Names') ? JSON.parse(localStorage.getItem('Names')): {};
-    var namesToStore =  processGreetings(storedUserList);
+    var namesToStore =  greeting(storedUserList);
 
     //To display the number of greeted people...
     displayCounter.innerHTML = Object.keys(storedUserList).length;
@@ -27,23 +93,28 @@ document.addEventListener('DOMContentLoaded', function () {
         var languageType = checkedRadioBtn.value;
         var nameOfPerson = greetingText.value.trim();
 
+        console.log(languageType);
+        console.log(nameOfPerson);
+
         // Variables to hold the values of inputs
 
-        var nameToset = processGreetings.setname(nameOfPerson);
-        var languageToUse = processGreetings.set_language(languageType);
+        var nameToset = namesToStore.set_Name(nameOfPerson);
+       // console.log(nameToset);
+        var languageToUse = namesToStore.set_language(languageType);
+       // console.log(languageToUse);
 
-        var checkUsersStored = processGreetings.checkList();
+        var checkUsersStored = namesToStore.checkList();
 
         //Storing names to local storage....
          namesToStore.nameToset;
          namesToStore.checkUsersStored;
 
          //----------------------------//
-         var newMapList = processGreetings.updateNameList();
+         var newMapList = namesToStore.updateNameList();
 
-         var counts = processGreetings.counter();
+         var counts = namesToStore.counter();
 
-         var greetMessage = processGreetings.doGreet();
+         var greetMessage = namesToStore.doGreet();
 
         localStorage.setItem("Names", JSON.stringify(namesToStore.newMapList));
 
@@ -65,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
 
         displayCounter.innerHTML = namesToStore.counts;
-        
+
         
 
     });
