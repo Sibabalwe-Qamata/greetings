@@ -27,17 +27,12 @@ function greeting() {
         counter++;
         return greetOne;
     }
-
-
     function greetEnglish(englishGreet) {
         var greetTwo = "Hello, " + englishGreet;
         counter++;
         return greetTwo;
     }
-
-
     function greetAfrikaans(afrikaansGreet) {
-
         var greetThree = "Hallo, " + afrikaansGreet;
         counter++;
         return greetThree;
