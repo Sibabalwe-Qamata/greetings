@@ -12,7 +12,7 @@ function greeting(UserDatabase)
 
     function setLanguage(lang){language= lang;}
 
-    function checkUserStoredList(UserDatabase){
+    function checkUserStoredList(){
         if(UserDatabase){ namesGreeted = UserDatabase;}
 
         if(Name_to_greet !==""){

@@ -12,54 +12,62 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var DisplayGreet = document.querySelector(".writer");
 
-    var namesGreeted = {};
+    var processGreetings = greeting();
 
-    var greetings = greeting();
+    //Below to get the stored users from local storage
+    var storedUserList = localStorage.getItem('Names') ? JSON.parse(localStorage.getItem('Names')): {};
+    var namesToStore =  processGreetings(storedUserList);
+
+    //To display the number of greeted people...
+    displayCounter.innerHTML = Object.keys(storedUserList).length;
+
 
     function greetPerson() {
         var checkedRadioBtn = document.querySelector("input[name='language']:checked");
-
         var languageType = checkedRadioBtn.value;
+        var nameOfPerson = greetingText.value.trim();
 
+        // Variables to hold the values of inputs
 
-        var nameOfPerson = greetingText.value;
+        var nameToset = processGreetings.setname(nameOfPerson);
+        var languageToUse = processGreetings.set_language(languageType);
 
+        var checkUsersStored = processGreetings.checkList();
 
-        if (languageType === "English") {
-            var countPeople = greetings.people();
-            if (namesGreeted[nameOfPerson] === undefined) {
+        //Storing names to local storage....
+         namesToStore.nameToset;
+         namesToStore.checkUsersStored;
 
-                //add an entry for the user that was greeted in the Object Map
-                namesGreeted[nameOfPerson] = 0;
-                //update the DOM to display the counter
-                displayCounter.innerHTML = countPeople;
-            }
-            var englishGreeting = greetings.english(nameOfPerson);
-            localStorage.setItem("Name", nameOfPerson);
-            DisplayGreet.innerHTML = englishGreeting;
+         //----------------------------//
+         var newMapList = processGreetings.updateNameList();
 
-        } else if (languageType === "Isixhosa") {
-            var xhosaGreetings = greetings.isixhosa(nameOfPerson);
-            localStorage.setItem("Name", nameOfPerson);
-            DisplayGreet.innerHTML = xhosaGreetings;
+         var counts = processGreetings.counter();
 
+         var greetMessage = processGreetings.doGreet();
 
-        } else if (languageType === "Afrikaans") {
-            localStorage.setItem("Name", nameOfPerson);
-            var afrikaansGreetings = greetings.afrikaans(nameOfPerson);
+        localStorage.setItem("Names", JSON.stringify(namesToStore.newMapList));
 
-            DisplayGreet.innerHTML = afrikaansGreetings;
+        displayCounter.innerHTML = namesToStore.counts;
+        DisplayGreet.innerHTML = greetMessage;
 
+        if(nameOfPerson == "")
+        {
+            DisplayGreet.innerHTML = "Please enter a name and choose a language!";
         }
-        var countPeople = greetings.people();
-        // localStorage.setItem("Counter", countPeople);
-        //var keep = localStorage.getItem("Counter")
-        displayCounter.innerHTML = countPeople;
 
     }
 
-    resetBtn.addEventListener('click', function () {
-        displayCounter.innerHTML = 0;
+    resetBtn.addEventListener('click', function () 
+    {
+        namesToStore.reset();
+        window.location.reload();
+        localStorage.clear();
+        
+
+        displayCounter.innerHTML = namesToStore.counts;
+        
+        
+
     });
 
     greetBtn.addEventListener('click', greetPerson);
