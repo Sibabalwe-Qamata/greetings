@@ -85,7 +85,7 @@ function greeting(UserDatabase)
     var namesToStore =  greeting(storedUserList);
 
     //To display the number of greeted people...
-    displayCounter.innerHTML = Object.keys(storedUserList).length;
+   // displayCounter.innerHTML = Object.keys(storedUserList).length;
 
 
     function greetPerson() {
@@ -93,32 +93,33 @@ function greeting(UserDatabase)
         var languageType = checkedRadioBtn.value;
         var nameOfPerson = greetingText.value.trim();
 
-        console.log(languageType);
-        console.log(nameOfPerson);
+        //console.log(languageType);
+        //console.log(nameOfPerson);
 
         // Variables to hold the values of inputs
 
         var nameToset = namesToStore.set_Name(nameOfPerson);
-       // console.log(nameToset);
+        console.log(nameToset);
         var languageToUse = namesToStore.set_language(languageType);
-       // console.log(languageToUse);
+       console.log(languageToUse);
 
-        var checkUsersStored = namesToStore.checkList();
+        //var checkUsersStored = namesToStore.checkList();
 
         //Storing names to local storage....
-         namesToStore.nameToset;
-         namesToStore.checkUsersStored;
+         namesToStore.get_name();
+         namesToStore.checkList();
 
          //----------------------------//
          var newMapList = namesToStore.updateNameList();
 
          var counts = namesToStore.counter();
+         console.log(counts);
 
          var greetMessage = namesToStore.doGreet();
 
-        localStorage.setItem("Names", JSON.stringify(namesToStore.newMapList));
+        localStorage.setItem("Name", JSON.stringify(namesToStore.get_name()));
 
-        displayCounter.innerHTML = namesToStore.counts;
+        displayCounter.innerHTML = counts;
         DisplayGreet.innerHTML = greetMessage;
 
         if(nameOfPerson == "")
@@ -136,9 +137,6 @@ function greeting(UserDatabase)
         
 
         displayCounter.innerHTML = namesToStore.counts;
-
-        
-
     });
 
     greetBtn.addEventListener('click', greetPerson);
