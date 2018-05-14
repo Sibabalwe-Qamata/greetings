@@ -47,5 +47,22 @@ describe('The Greet function', function()
      
      });
 
+     it('It should not Increment the counter, since only One User is greeted in three different languages',
+     function() {
+       var greetings = greeting({});
+ 
+       greetings.set_Name("Siba");
+       greetings.set_language("English");
+ 
+       greetings.set_Name("Siba");
+       greetings.set_language("Isixhosa");
+ 
+       greetings.set_Name("Siba");
+       greetings.set_language("Afrikaans");
+ 
+       assert.equal(greetings.counter(),1);
+      
+      });
+
 
   });
