@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //Below is the Factory Function
 
 
-    function greeting(UserDatabase) {
+    /**function greeting(UserDatabase) {
 
         var Name_to_greet = '';
         var language = '';
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-    }
+    }**/
 
     //----------------------------------------End Here------------------------------------------------//
 
@@ -87,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var resetBtn = document.querySelector(".reset");
 
     var DisplayGreet = document.querySelector(".writer");
-
+   
+    //var GreetMe = greeting();
 
     //Below to get the stored users from local storage
     var storedUserList = localStorage.getItem('Name') ? JSON.parse(localStorage.getItem('Name')) : {};
@@ -100,21 +101,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function capitalizeFirstLetter(userText) {
+        return userText.charAt(0).toUpperCase() + userText.slice(1);
+    }
+
+  
+
+
     function greetPerson() {
         var checkedRadioBtn = document.querySelector("input[name='language']:checked");
         var languageType = checkedRadioBtn.value;
         var nameOfPerson = greetingText.value.trim();
 
+       
         // Variables to hold the values of inputs
 
-        var nameToset = namesToStore.set_Name(nameOfPerson);
-        var languageToUse = namesToStore.set_language(languageType);
-       
-
-        if (nameOfPerson == " ") {
-            DisplayGreet.innerHTML = "Please enter a name and choose a language!";
+        if(nameOfPerson === nameOfPerson.toLowerCase())
+        {
+            var CapitalizeInput = capitalizeFirstLetter(nameOfPerson);
+            var nameToset = namesToStore.set_Name(CapitalizeInput);
+            var languageToUse = namesToStore.set_language(languageType);
         }
+        else if(nameOfPerson === nameOfPerson.toUpperCase())
+        {
+            var putLowerCase = nameOfPerson.toLowerCase();
+            var CapitalizeInput = capitalizeFirstLetter(putLowerCase);
+            var nameToset = namesToStore.set_Name(CapitalizeInput);
+            var languageToUse = namesToStore.set_language(languageType);
+        }
+        else if (nameOfPerson === " "){
+            DisplayGreet.innerHTML = "Please enter a name and choose a language!";
 
+        }
+       
     }
 
 
@@ -142,6 +161,8 @@ document.addEventListener('DOMContentLoaded', function () {
         verifyMap();
         greetPerson();
         getGreetings();
+      
+        capitalizeFirstLetter();
 
     });
 });
