@@ -1,60 +1,68 @@
-function greeting(UserDatabase) 
-{
+document.addEventListener('DOMContentLoaded', function () {
 
-    var Name_to_greet = '';
-    var language= '';
+    //get a reference to the billString
+    var greetingText = document.querySelector(".text-name");
+
+    var displayCounter = document.querySelector(".counter");
+
+    //get a reference to the buttons
+    var greetBtn = document.querySelector(".greet");
+
+    var resetBtn = document.querySelector(".reset");
+
+    var DisplayGreet = document.querySelector(".writer");
+    
+    var myMap = new Map();
+
     var namesGreeted = {};
 
-    
-    function setName(greetName){
-        if(greetName !== " "){Name_to_greet = greetName;}
-    }
+    var greetings = greeting();
 
-    function setLanguage(lang){language= lang;}
+    function greetPerson() {
+        var checkedRadioBtn = document.querySelector("input[name='language']:checked");
 
-    function checkUserStoredList(){
-        if(UserDatabase){ namesGreeted = UserDatabase;}
+        var languageType = checkedRadioBtn.value;
 
-        if(Name_to_greet !==""){
-            if(namesGreeted[Name_to_greet] === undefined)
-            {
-                namesGreeted[Name_to_greet]=0;
+
+        var nameOfPerson = greetingText.value;
+
+
+        if (languageType === "English") {
+            var countPeople = greetings.people();
+            if (namesGreeted[nameOfPerson] === undefined) {
+
+                //add an entry for the user that was greeted in the Object Map
+                namesGreeted[nameOfPerson] = 0;
+                //update the DOM to display the counter
+                displayCounter.innerHTML = countPeople;
             }
+            var englishGreeting = greetings.english(nameOfPerson);
+            localStorage.setItem("Name", nameOfPerson);
+            DisplayGreet.innerHTML = englishGreeting;
+
+        } else if (languageType === "Isixhosa") {
+            var xhosaGreetings = greetings.isixhosa(nameOfPerson);
+            localStorage.setItem("Name", nameOfPerson);
+            DisplayGreet.innerHTML = xhosaGreetings;
+
+
+        } else if (languageType === "Afrikaans") {
+            localStorage.setItem("Name", nameOfPerson);
+            var afrikaansGreetings = greetings.afrikaans(nameOfPerson);
+
+            DisplayGreet.innerHTML = afrikaansGreetings;
+
         }
+        var countPeople = greetings.people();
+        // localStorage.setItem("Counter", countPeople);
+        //var keep = localStorage.getItem("Counter")
+        displayCounter.innerHTML = countPeople;
 
     }
 
-    function greetUser()
-    {
-        if(language === "Isixhosa"){return "Molo, "+Name_to_greet;}
-        else if(language === "Afrikaans"){return "Hallo, "+Name_to_greet;}
-        else if(language ==="English"){return "Molo, "+Name_to_greet;}
-    }
+    resetBtn.addEventListener('click', function () {
+        displayCounter.innerHTML = 0;
+    });
 
-    //Below are Getter functions
-
-    function getNameToGreet(){return Name_to_greet;}
-
-    function getLanguageChoice(){return language;}
-
-    function getNameMap(){return namesGreeted;}
-
-    function updateNameMap(){return namesGreeted ={};}
-
-    function getCounter(){return Object.keys(namesGreeted).length;}
-
-    return {
-        setname: setName,
-        set_language: setLanguage,
-        checkList: checkUserStoredList,
-
-        get_name : getNameToGreet,
-        get_language : getLanguageChoice,
-        get_NameList : getNameMap,
-
-        doGreet : greetUser,
-        counter : getCounter,
-        updateNameList : updateNameMap
-    }
-
-}
+    greetBtn.addEventListener('click', greetPerson);
+});
