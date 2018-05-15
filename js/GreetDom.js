@@ -101,9 +101,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function capitalizeFirstLetter(userText) {
+    /***function capitalizeFirstLetter(userText) {
         return userText.charAt(0).toUpperCase() + userText.slice(1);
-    }
+    }**/
 
   
 
@@ -118,15 +118,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if(nameOfPerson === nameOfPerson.toLowerCase())
         {
-            var CapitalizeInput = capitalizeFirstLetter(nameOfPerson);
-            var nameToset = namesToStore.set_Name(CapitalizeInput);
+            //var CapitalizeInput = capitalizeFirstLetter(nameOfPerson);
+            var nameToset = namesToStore.set_Name(nameOfPerson);
             var languageToUse = namesToStore.set_language(languageType);
         }
         else if(nameOfPerson === nameOfPerson.toUpperCase())
         {
-            var putLowerCase = nameOfPerson.toLowerCase();
-            var CapitalizeInput = capitalizeFirstLetter(putLowerCase);
-            var nameToset = namesToStore.set_Name(CapitalizeInput);
+            //var putLowerCase = nameOfPerson.toLowerCase();
+            //var CapitalizeInput = capitalizeFirstLetter(putLowerCase);
+            var nameToset = namesToStore.set_Name(nameOfPerson);
             var languageToUse = namesToStore.set_language(languageType);
         }
         else if (nameOfPerson === " "){
