@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         window.location.reload();
         localStorage.clear();
-        displayCounter.innerHTML = namesToStore.counts;
+        displayCounter.innerHTML = 0;
     });
 
     greetBtn.addEventListener('click', function () {
