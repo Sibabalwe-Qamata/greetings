@@ -101,12 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /***function capitalizeFirstLetter(userText) {
-        return userText.charAt(0).toUpperCase() + userText.slice(1);
-    }**/
-
-  
-
+   
 
     function greetPerson() {
         var checkedRadioBtn = document.querySelector("input[name='language']:checked");
@@ -161,8 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
         verifyMap();
         greetPerson();
         getGreetings();
-      
-        capitalizeFirstLetter();
 
     });
 });
