@@ -24,64 +24,61 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-   
 
     function greetPerson() {
         var checkedRadioBtn = document.querySelector("input[name='language']:checked");
-        var languageType = checkedRadioBtn.value;
-        var nameOfPerson = greetingText.value.trim();
+        let languageType ='';
+        let nameOfPerson = greetingText.value.trim();  
 
-        /***ToDo
-         * Handle User Input 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * ***/
-        if(nameOfPerson === nameOfPerson.toLowerCase())
-        {
-            var nameToset = namesToStore.set_Name(nameOfPerson);
-            var languageToUse = namesToStore.set_language(languageType);
-        }
-        else if(nameOfPerson === nameOfPerson.toUpperCase())
-        {
-        
-            var nameToset = namesToStore.set_Name(nameOfPerson);
-            var languageToUse = namesToStore.set_language(languageType);
-        }
-        else if (nameOfPerson === " "){
-            DisplayGreet.innerHTML = "Please enter a name and choose a language!";
+         if(nameOfPerson)
+         {
+             if(checkedRadioBtn !== null)
+             {
+                     
+                var nameInCaps = namesToStore.capitilize(nameOfPerson);
+                var nameToset = namesToStore.set_Name(nameInCaps);
+                 languageType = checkedRadioBtn.value;
+                var languageToUse = namesToStore.set_language(languageType);
 
-        }
+                namesToStore.get_name();
+                var newMapList = namesToStore.get_NameList();
+                var greetMessage = namesToStore.doGreet();
+       
+                 localStorage.setItem("Name", JSON.stringify(newMapList));
+
+                 displayCounter.innerHTML = namesToStore.counter();
+                 DisplayGreet.innerHTML = greetMessage;
+
+
+             }
+         }
+         else if(nameOfPerson === "")
+         {
+             if((languageType === '') || (languageType === null) ){
+                DisplayGreet.innerHTML = "Please enter a name and choose a language!";
+             }
+            
+         }
+         else
+         {
+
+            DisplayGreet.innerHTML = "Invalid input : Please enter a name and choose a language!";
+         }
        
     }
 
-
-    function getGreetings() {
-        greetPerson();
-
-        namesToStore.get_name();
-        var newMapList = namesToStore.get_NameList();
-        var greetMessage = namesToStore.doGreet();
-       
-        localStorage.setItem("Name", JSON.stringify(newMapList));
-
-        displayCounter.innerHTML = namesToStore.counter();
-        DisplayGreet.innerHTML = greetMessage;
-    }
 
     resetBtn.addEventListener('click', function () {
         
         window.location.reload();
         localStorage.clear();
-        displayCounter.innerHTML = namesToStore.counts;
+        displayCounter.innerHTML = localStorage.length;
     });
 
     greetBtn.addEventListener('click', function () {
         verifyMap();
         greetPerson();
-        getGreetings();
+     
 
     });
 });
