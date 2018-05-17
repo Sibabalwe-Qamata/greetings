@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //Below to get the stored users from local storage
     var storedUserList = localStorage.getItem('Name') ? JSON.parse(localStorage.getItem('Name')) : {};
     var namesToStore = greeting(storedUserList);
+    displayCounter.innerHTML = namesToStore.counter();
 
     //Check if there is anything in LocalStorage which is a Map....
     function verifyMap() {
@@ -59,18 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
              }
             
          }
-         /**else
-         {
-
-            DisplayGreet.innerHTML = "Invalid input : Please enter a name and choose a language!";
-         }
-
-         if(window.location.reload() === true)
-         {
-             displayCounter.innerHTML = namesToStore.counter();
-         }**/
-
-       
+     
     }
 
 
@@ -79,13 +69,11 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.reload();
         localStorage.clear();
         displayCounter.innerHTML = 0;
-        //displayCounter.innerHTML = localStorage.length;
     });
 
     greetBtn.addEventListener('click', function () {
         verifyMap();
         greetPerson();
-        //window.location.reload();
         displayCounter.innerHTML = namesToStore.counter();
     });
 });
