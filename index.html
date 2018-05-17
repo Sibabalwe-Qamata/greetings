@@ -47,7 +47,7 @@
             </div>
 
             <div class="four columns">
-                <input type="text" name="number" onfocus="this.value=''"    value="" placeholder="enter name here" class="text-name">
+                <input id="name" onfocus="this.value=''"  onkeyup="lettersOnly(this)" value="" placeholder="enter name here" class="text-name"  pattern="[a-zA-Z]+" title="Please enter a name e.g 'Siba'">
 
             </div>
 
@@ -121,6 +121,12 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
     <script src="js/GreetDom.js" charset="utf-8"></script>
+    <script>
+        function lettersOnly(input){
+            var regex = /[^a-z]/gi;
+            input.value = input.value.replace(regex, "");
+        }
+    </script>
     <script src="js/Greet.js" charset="utf-8"></script>
   
 </body>

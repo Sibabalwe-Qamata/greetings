@@ -21,7 +21,14 @@ function greeting(UserDatabase) {
             language = lang;
         }
 
-
+        function CapitilizeString(word) 
+        {
+            let name = word.toLowerCase();
+            let PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+            
+            return PersonName ;
+        }
+        
 
         function greetUser() {
             if (language === "Isixhosa") {
@@ -57,6 +64,7 @@ function greeting(UserDatabase) {
          return {
             set_Name: setName,
             set_language: setLanguage,
+            capitilize: CapitilizeString,
 
 
             get_name: getNameToGreet,
