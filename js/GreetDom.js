@@ -81,6 +81,5 @@ document.addEventListener('DOMContentLoaded', function () {
     greetBtn.addEventListener('click', function () {
         verifyMap();
         greetPerson();
-        displayCounter.innerHTML = namesToStore.counter();
     });
 });
