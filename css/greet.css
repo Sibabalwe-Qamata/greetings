@@ -61,9 +61,15 @@ body {
 
 .counter {
     padding-left: 5%;
-
+    font-size:1.2em; 
+    padding-bottom: 5%;
 }
+
 
 .number {
     padding-left: 2%;
+}
+ 
+span{
+    padding-bottom: 5%;
 }

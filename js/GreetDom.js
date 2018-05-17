@@ -52,18 +52,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
              }
          }
-         else if(nameOfPerson === "")
+          if(nameOfPerson === "")
          {
              if((languageType === '') || (languageType === null) ){
                 DisplayGreet.innerHTML = "Please enter a name and choose a language!";
              }
             
          }
-         else
+         /**else
          {
 
             DisplayGreet.innerHTML = "Invalid input : Please enter a name and choose a language!";
          }
+
+         if(window.location.reload() === true)
+         {
+             displayCounter.innerHTML = namesToStore.counter();
+         }**/
+
        
     }
 
@@ -72,17 +78,14 @@ document.addEventListener('DOMContentLoaded', function () {
         
         window.location.reload();
         localStorage.clear();
-<<<<<<< HEAD
         displayCounter.innerHTML = 0;
-=======
-        displayCounter.innerHTML = localStorage.length;
->>>>>>> 7f4825b719fd328fcf4c6cbb1294e51157a91a0d
+        //displayCounter.innerHTML = localStorage.length;
     });
 
     greetBtn.addEventListener('click', function () {
         verifyMap();
         greetPerson();
-     
-
+        //window.location.reload();
+        displayCounter.innerHTML = namesToStore.counter();
     });
 });
