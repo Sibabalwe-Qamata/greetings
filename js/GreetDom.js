@@ -53,14 +53,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
              }
          }
-          if(nameOfPerson === "")
+        if(nameOfPerson === "")
          {
              if((languageType === '') || (languageType === null) ){
                 DisplayGreet.innerHTML = "Please enter a name and choose a language!";
              }
             
          }
-     
+
+         if(typeof(nameOfPerson) != null){
+
+            if((languageType === '') || (languageType === null) ){
+                DisplayGreet.innerHTML = "Please enter a name and choose a language!";
+             }
+         }
+
     }
 
 
